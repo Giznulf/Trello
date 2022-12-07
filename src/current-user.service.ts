@@ -14,4 +14,3 @@ export class CurrentUserService {
      this.count$.next(this.name);
   }
 }
-
