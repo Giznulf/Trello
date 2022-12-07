@@ -1,0 +1,8 @@
+section{
+  position: fixed;
+    top: 48px;
+    left: 562px;
+  width: 304px; /* ширина */
+  height: 189px; /* высота */
+  background-color: blue;
+}
