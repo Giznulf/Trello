@@ -17,39 +17,37 @@ export class HomePageComponent implements OnInit {
   errorLogin : boolean = false;
   home : boolean = true;
 
-  constructor(/*private router: Router,*/
+  constructor(private router: Router,
               private httpService: HttpService
              /* private currentuserservice: CurrentUserService*/) { }
 
-  checkig(){
-    this.ngOnInit();
-
-/*
-    for(let i = 0; i < this.users.length; i++){
-
-      if(this.name == this.users[i].name && this.password == this.users[i].password){
-        this.currentuserservice.name = this.users[i].name;
-        this.router.navigate(['/desktop']);
-        return;
-
-      } else if(i === this.users.length - 1){
-
-        if(this.errorLogin == false){
-          this.errorLogin = !this.errorLogin;
-        }
-      }
-    }*/
+   checkig() {
+    this.newgjob();
   }
 
-  ngOnInit(user = new User (this.name, this.password)) {
+
+   newgjob(user = new User (this.name, this.password)) {
     console.log(user);
-   // this.httpService.getData().subscribe((data: any) => this.users=data["users"]);
-   this.httpService.postData(user).subscribe({
-    next:(data: any) => {console.log(data)},
-    error: error => console.log(error)
-});
-   //((data: any) => this.users=data["users"]);
+    this.httpService.postData(user).subscribe({
+      next:(data: any) => {
+          console.log(data);
+          if(data == "Авторизация прошла успешно"){
+
+            this.router.navigate(['/desktop']);
+
+          } else if(data == "Неверный логин или пароль"){
+
+            if(this.errorLogin == false){
+              this.errorLogin = !this.errorLogin;
+            }
+          }
+      },
+      error: error => console.log(error)
+    });
   }
+
+
+  ngOnInit(){ }
 
 }
 export class User{

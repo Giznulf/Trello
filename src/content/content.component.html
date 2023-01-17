@@ -1,3 +1,15 @@
-<p>
-  content works!
-</p>
+<div class="board-canvas">
+  <div></div>
+  <div [ngClass]="{add_column_inactive : addColumnInactive, add_column_active : addColumnActive}">
+    <form method="post" >
+      <div *ngIf="addColumnInactive1; then thenBlock else elseBlock"></div>
+            <ng-template #thenBlock>
+              <button class="button-add-column" (click)="addingNewColumn()">
+                <img src="assets/icons/add-white-icon.png" alt="">
+                Добавьте еще одну колонку
+              </button>
+            </ng-template>
+            <ng-template #elseBlock>Else template</ng-template>
+    </form>
+  </div>
+</div>
