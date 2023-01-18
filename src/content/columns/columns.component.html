@@ -1,0 +1,30 @@
+<div class="content-column">
+  <div class="name-and-menu-column">
+    <div class="name-column"><h6>{{columnName.nameColumn}}</h6> </div>
+    <div><div class="menu-column" ><img src="assets/icons/ellipsisGray.png" alt=""></div></div>
+  </div>
+  <div *ngFor="let card of columnName.cards"></div>
+  <div>
+    <form method="post">
+      <div *ngIf="addCardInactive; then thenBlock else elseBlock"></div>
+        <ng-template #thenBlock>
+          <div class="container-button-add-card">
+            <button class="button-add-card" (click)="changeVisibilityNewCardCreationForm(this.columnName.id)">
+              <img src="assets/icons/add-white-icon.png" alt="">
+              Добавьте карточку
+            </button>
+            <img src="assets/icons/create-by-template.png" alt="">
+          </div>
+        </ng-template>
+        <ng-template #elseBlock>
+          <div>
+            <input type="text" name="name" [(ngModel)]="nameNewCard" class="name-adding-column"  placeholder="Ввести заголовок для этой карточки" maxlength="512">
+            <div class="buttons-management">
+              <input class="button-add-list" type="submit" value="Добавьте карточку" (click)="createNewColumn()">
+              <button class="button-close-add-column" (click)="changeVisibilityNewCardCreationForm(this.columnName.id)"><img src="assets/icons/close.png" alt=""></button>
+            </div>
+          </div>
+        </ng-template>
+    </form>
+  </div>
+</div>

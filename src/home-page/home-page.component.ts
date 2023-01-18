@@ -28,7 +28,7 @@ export class HomePageComponent implements OnInit {
 
    newgjob(user = new User (this.name, this.password)) {
     console.log(user);
-    this.httpService.postData(user).subscribe({
+    this.httpService.postCurrentUser(user).subscribe({
       next:(data: any) => {
           console.log(data);
           if(data == "Авторизация прошла успешно"){

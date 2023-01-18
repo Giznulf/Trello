@@ -1,15 +1,25 @@
 <div class="board-canvas">
-  <div></div>
+  <div class="existing-columns" *ngFor="let column of columns">
+    <app-columns [columnName]=column></app-columns>
+  </div>
   <div [ngClass]="{add_column_inactive : addColumnInactive, add_column_active : addColumnActive}">
     <form method="post" >
-      <div *ngIf="addColumnInactive1; then thenBlock else elseBlock"></div>
+      <div *ngIf="addColumnInactive; then thenBlock else elseBlock"></div>
             <ng-template #thenBlock>
-              <button class="button-add-column" (click)="addingNewColumn()">
+              <button class="button-add-column" (click)="changeVisibilityNewColumnCreationForm()">
                 <img src="assets/icons/add-white-icon.png" alt="">
                 Добавьте еще одну колонку
               </button>
             </ng-template>
-            <ng-template #elseBlock>Else template</ng-template>
+            <ng-template #elseBlock>
+              <div class="window-add-column">
+                <input type="text" name="name" [(ngModel)]="nameNewColumn" class="name-adding-column"  placeholder="Ввести заголовок списка" maxlength="512">
+                <div class="buttons-management">
+                  <input class="button-add-list" type="submit" value="Добавить список" (click)="createNewColumn()">
+                  <button class="button-close-add-column" (click)="changeVisibilityNewColumnCreationForm()"><img src="assets/icons/close.png" alt=""></button>
+                </div>
+              </div>
+            </ng-template>
     </form>
   </div>
 </div>

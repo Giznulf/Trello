@@ -1,23 +1,25 @@
-import { Component, OnInit } from '@angular/core';
-import { HttpService} from '../http.service';
+import { Input, Component, OnInit } from '@angular/core';
+import { HttpService} from '../../http.service';
+import { Column } from '../content.component';
 
 @Component({
-  selector: 'app-content',
-  templateUrl: './content.component.html',
-  styleUrls: ['./content.component.css'],
+  selector: 'app-columns',
+  templateUrl: './columns.component.html',
+  styleUrls: ['./columns.component.css'],
   providers: [HttpService]
 })
-export class ContentComponent implements OnInit {
+export class ColumnsComponent implements OnInit {
 
-  constructor(private httpService: HttpService
-   /* private currentuserservice: CurrentUserService*/) { }
+  constructor(private httpService: HttpService) { }
+
+  @Input() columnName: any;
 
   addColumnInactive: boolean = true;
   addColumnActive: boolean = false;
   nameNewColumn: string = "";
   idNewColumn: any;
- // addCardInactive: boolean = true;
-  addCardInactive: Condition = new Condition (true);
+  addCardInactive: boolean = true;
+  //addCardInactive: Condition = new Condition (true);
   nameNewCard: string = "";
   cards?: string[];
   columns?: Column[];
@@ -29,7 +31,7 @@ export class ContentComponent implements OnInit {
   }
   changeVisibilityNewCardCreationForm(id: number){
     console.log(id);
-    this.addCardInactive.id = !this.addCardInactive.id;
+    this.addCardInactive = !this.addCardInactive;
   }
 
 
@@ -52,11 +54,4 @@ export class ContentComponent implements OnInit {
     });
   }
 
-
-}
-export class Column{
-  constructor(public id: number, public nameColumn: string, public cards?: string[]){}
-}
-class Condition{
-  constructor(public id: boolean){}
 }
