@@ -1,5 +1,6 @@
 <div class="color">
   <nav class="flex-container-top height-32" (click)="callingSubmenu($event)">
+    <div class="flex-container-top">
     <div class="other-products height-32">
       <button appAiming class="height-32">
         <img src="assets/icons/dots-grid.png" alt="">
@@ -40,7 +41,8 @@
     <div class="create height-32">
       <button appAiming class="height-32"><p>Создать</p></button>
     </div>
-    <div class="height-32" style="width: 100%; max-width: 278px;" ></div>
+  </div>
+    <div>
     <div class="top-right-menu height-32">
       <div appAiming class="search">
         <img src="assets/icons/magnify.png">
@@ -54,5 +56,6 @@
       </button>
       <button id="1" class="current-user"><b style="font-weight: 700; font-size: 18px">{{identificator}}</b></button>
     </div>
+  </div>
   </nav>
 </div>

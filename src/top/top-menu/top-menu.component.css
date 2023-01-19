@@ -20,6 +20,7 @@ app-submenu{
   padding: 6px 4px;
   display: flex; /*генерирует flex-контейнер*/
   align-items:center; /*выравнивание элементов по высоте*/
+  justify-content: space-between;
 }
 .flex-container-top button{
   cursor: pointer;
