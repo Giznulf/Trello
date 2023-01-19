@@ -3,7 +3,8 @@ import { Observable, throwError } from 'rxjs';
 import { catchError, retry } from 'rxjs/operators';
 import {HttpClient} from '@angular/common/http';
 import {User} from '../src/home-page/home-page.component';
-import {Column} from '../src/content/content.component'
+import {Column} from '../src/content/content.component';
+import { Card } from './content/columns/columns.component';
 
 @Injectable()
 export class HttpService{
@@ -19,6 +20,19 @@ export class HttpService{
     postNewColumn(column : Column){
       const body = {nameColumn: column.nameColumn, cards: column.cards};
       return this.http.post(`${this._apiUrl}columns/`, body);
+    }
+
+    deleteColumn(id: string){
+      return this.http.delete(`${this._apiUrl}columns/${id}`);
+    }
+
+    getAllCardsThisColumn(columnId: string){
+      return this.http.get(`${this._apiUrl}cards/${columnId}`);
+    }
+
+    postNewCard(card: Card){
+      const body = {nameCard: card.nameCard, columnId: card.columnId};
+      return this.http.post(`${this._apiUrl}cards/`, body);
     }
 
     postCurrentUser(user: User){

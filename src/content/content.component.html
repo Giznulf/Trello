@@ -1,6 +1,6 @@
 <div class="board-canvas">
   <div class="existing-columns" *ngFor="let column of columns">
-    <app-columns [columnName]=column></app-columns>
+    <app-columns [column]=column></app-columns>
   </div>
   <div [ngClass]="{add_column_inactive : addColumnInactive, add_column_active : addColumnActive}">
     <form method="post" >
