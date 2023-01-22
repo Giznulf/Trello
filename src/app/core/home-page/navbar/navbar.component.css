@@ -1,0 +1,195 @@
+app-top-menu {
+  width: 100%; /* ширина */
+  height: 44px; /* высота */
+}
+app-submenu {
+  width: 100%; /* ширина */
+  height: 52px; /* высота */
+}
+.color {
+  background-color: #026aa7;
+  border-bottom: 1px solid hsla(0, 0%, 100%, 0.16);
+}
+.invisible {
+  background-color: rgb(117, 117, 116);
+}
+.height-32 {
+  height: 32px; /* высота */
+}
+.flex-container-top {
+  padding: 6px 4px;
+  display: flex; /*генерирует flex-контейнер*/
+  align-items: center; /*выравнивание элементов по высоте*/
+  justify-content: space-between;
+}
+.flex-container-top button {
+  cursor: pointer;
+  border-radius: 2px;
+}
+.flex-container-references {
+  margin-left: 4px;
+  margin-right: 4px;
+  width: 546px; /* ширина */
+  display: flex; /*генерирует flex-контейнер*/
+  align-items: center; /*выравнивание элементов по высоте*/
+}
+
+.other-products {
+  background-color: #026aa7;
+  width: 32px; /* ширина */
+}
+.other-products button {
+  background-color: #026aa7;
+  width: 32px; /* ширина */
+  padding: 0;
+  border: 0;
+}
+.other-products img {
+  padding: 6px;
+  width: 20px; /* ширина */
+  height: 20px; /* высота */
+}
+.home-page {
+  background-color: #026aa7;
+  width: 75px; /* ширина */
+  padding: 6px;
+}
+.home-page button {
+  background-color: #026aa7;
+  border: 0px;
+  padding: 0;
+}
+.home-page b {
+  text-align: center;
+  color: white;
+  font-size: large;
+}
+.home-page img {
+  width: 20px; /* ширина */
+  height: 20px; /* высота */
+}
+.workspaces {
+  width: 167px;
+}
+.recent {
+  width: 85px;
+}
+.favourites {
+  width: 105px;
+}
+.templates {
+  width: 85px;
+}
+.workspaces,
+.recent,
+.favourites,
+.templates {
+  display: flex; /*генерирует flex-контейнер*/
+  align-items: center;
+  height: 20px;
+  padding: 6px 12px;
+  border: 0;
+  background-color: #026aa7;
+  color: white;
+  box-sizing: content-box;
+}
+:is(.workspaces, .recent, .favourites, .templates) > img {
+  width: 15px; /* ширина */
+  height: 15px; /* высота */
+  margin-left: 8px;
+}
+.create {
+  margin-right: 4px;
+  width: 79px;
+}
+.create button {
+  background-color: rgba(255, 255, 255, 0.2);
+  border: 0;
+  display: flex;
+  align-items: center;
+}
+.create p {
+  margin: 0;
+  font-weight: 400;
+  padding: 0 12px;
+  color: white;
+}
+.top-right-menu {
+  display: flex; /*генерирует flex-контейнер*/
+  align-items: center; /*выравнивание элементов по высоте*/
+  justify-content: right;
+}
+.search {
+  display: flex;
+  align-items: center;
+  width: 200px;
+  height: 32px;
+  margin-left: 4px;
+  margin-right: 4px;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  background-color: rgba(255, 255, 255, 0.2);
+  border-radius: 5px;
+  color: white;
+}
+.search img {
+  width: 20px;
+  height: 20px;
+  margin-left: 8px;
+}
+.search span {
+  padding-left: 4px;
+}
+.top-right-menu > button {
+  width: 32px;
+  height: 32px;
+  background-color: #026aa7;
+  border: 0;
+  border-radius: 2px;
+  margin-right: 4px;
+}
+.current-user {
+  color: white;
+  background-color: #41558f !important;
+  padding: 0;
+  width: 32px; /* Ширина кнопки */
+  height: 32px; /* Высота */
+  border-radius: 15px !important; /*радиус уголка*/
+}
+
+nav {
+  width: 100%; /* ширина */
+  height: 40px; /* высота */
+  padding: 8px 4px 4px 32px;
+}
+
+.board > button {
+  background-color: rgba(255, 255, 255, 0.3);
+  padding: 5px 6px;
+  float: left;
+  display: inline-flex;
+  align-items: center;
+  margin-right: 4px;
+  margin-bottom: 8px;
+  border: 0;
+  border-radius: 2px;
+  color: #ffffff;
+}
+.board img {
+  height: 20px;
+  width: 20px;
+  padding: 2px;
+}
+.name-workspace {
+  margin: 0 4px 4px 0;
+}
+.name-workspace input {
+  display: none;
+}
+.name-workspace h1 {
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 32px;
+  padding: 0 12px;
+  margin: 0 0 12px 0;
+  color: #ffffff;
+}
