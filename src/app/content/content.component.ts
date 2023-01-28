@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpService } from 'src/app/shared/services/http.service';
+import { map } from 'rxjs';
+
+import { ColumnService } from './services/column.service';
 
 @Component({
   selector: 'app-content',
@@ -7,7 +9,7 @@ import { HttpService } from 'src/app/shared/services/http.service';
   styleUrls: ['./content.component.css'],
 })
 export class ContentComponent implements OnInit {
-  constructor(private httpService: HttpService) {}
+  constructor(private columnServise: ColumnService) {}
 
   addColumnInactive: boolean = true;
   addColumnActive: boolean = false;
@@ -24,25 +26,22 @@ export class ContentComponent implements OnInit {
   createNewColumn(
     column = new Column(this.idNewColumn, this.nameNewColumn, this.cards)
   ) {
-    console.log(column);
-    this.httpService.postNewColumn(column).subscribe({
-      next: (data: any) => {
-        console.log(data);
-        this.ngOnInit();
-      },
-      error: (error) => console.log(error),
+    this.columnServise.createNewColumn(column).subscribe(() => {
+      this.ngOnInit();
     });
     this.nameNewColumn = '';
   }
 
   ngOnInit() {
-    this.httpService.getAllColumn().subscribe({
-      next: (data: any) => {
-        console.log(data);
-        this.columns = data;
-      },
-      error: (error) => console.log(error),
-    });
+    this.columnServise
+      .getAllColumn()
+      .pipe(
+        map((columns) => {
+          this.columns = columns;
+          console.log(this.columns);
+        })
+      )
+      .subscribe(() => {});
   }
 }
 export class Column {

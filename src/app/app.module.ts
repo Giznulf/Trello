@@ -2,6 +2,8 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ToastrModule } from 'ngx-toastr';
 
 import { AppRoutingModule } from './app-routing.module';
 import { HomePageModule } from 'src/app/core/home-page/home-page.module';
@@ -17,6 +19,8 @@ import { LoginPageComponent } from 'src/app/core/login-page/login-page.component
     FormsModule,
     HttpClientModule,
     HomePageModule,
+    BrowserAnimationsModule,
+    ToastrModule.forRoot(),
   ],
   bootstrap: [AppComponent],
 })

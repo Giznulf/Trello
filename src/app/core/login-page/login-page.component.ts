@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
-import { HttpService } from 'src/app/shared/services/http.service';
+import { UserAuthorizationService } from '../servises/user-authorization.service';
 
 @Component({
   selector: 'app-login-page',
@@ -13,28 +12,12 @@ export class LoginPageComponent {
   errorLogin: boolean = false;
   home: boolean = true;
 
-  constructor(private router: Router, private httpService: HttpService) {}
+  constructor(private userAuthorization: UserAuthorizationService) {}
 
   checkig() {
-    this.newgjob();
+    this.userAuthorization.postCurrentUser(new User(this.name, this.password)).unsubscribe;
   }
 
-  newgjob(user = new User(this.name, this.password)) {
-    console.log(user);
-    this.httpService.postCurrentUser(user).subscribe({
-      next: (data: any) => {
-        console.log(data);
-        if (data == 'Авторизация прошла успешно') {
-          this.router.navigate(['/desktop']);
-        } else if (data == 'Неверный логин или пароль') {
-          if (this.errorLogin == false) {
-            this.errorLogin = !this.errorLogin;
-          }
-        }
-      },
-      error: (error) => console.log(error),
-    });
-  }
 }
 export class User {
   constructor(public name: string, public password: string) {}

@@ -1,5 +1,7 @@
 import { Input, Component, OnInit } from '@angular/core';
-import { HttpService } from 'src/app/shared/services/http.service';
+import { map } from 'rxjs';
+
+import { CardService } from '../services/card.service';
 import { ContentComponent } from '../content.component';
 
 @Component({
@@ -9,7 +11,7 @@ import { ContentComponent } from '../content.component';
 })
 export class ColumnsComponent implements OnInit {
   constructor(
-    private httpService: HttpService,
+    private cardService: CardService,
     private content: ContentComponent
   ) {}
 
@@ -25,34 +27,28 @@ export class ColumnsComponent implements OnInit {
     card = new Card(this.idNewCard, this.nameNewCard, this.column.id)
   ) {
     console.log(card);
-    this.httpService.postNewCard(card).subscribe({
-      next: (data: any) => {
-        console.log(data);
-        this.ngOnInit();
-      },
-      error: (error) => console.log(error),
+    this.cardService.createNewCard(card).subscribe(() => {
+      this.ngOnInit();
     });
     this.nameNewCard = '';
   }
 
   deleteColumn(id: string) {
-    this.httpService.deleteColumn(id).subscribe({
-      next: (data: any) => {
-        console.log(data);
-        this.content.ngOnInit();
-      },
-      error: (error) => console.log(error),
+    this.cardService.deleteColumn(id).subscribe(() => {
+      this.content.ngOnInit();
     });
   }
 
   ngOnInit() {
-    this.httpService.getAllCardsThisColumn(this.column.id).subscribe({
-      next: (data: any) => {
-        console.log(data);
-        this.cards = data;
-      },
-      error: (error) => console.log(error),
-    });
+    this.cardService
+      .getAllCardsThisColumn(this.column.id)
+      .pipe(
+        map((cards) => {
+          this.cards = cards;
+          console.log(this.cards);
+        })
+      )
+      .subscribe(() => {});
   }
 }
 export class Card {
