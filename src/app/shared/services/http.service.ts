@@ -20,10 +20,4 @@ export class HttpService {
   post(body: any, endAddress: string): Observable<any> {
     return this.http.post(`${this._apiUrl}${endAddress}`, body);
   }
-
-  postResponseTypeText(body: any, endAddress: string): Observable<any> {
-    return this.http.post(`${this._apiUrl}${endAddress}`, body, {
-      responseType: 'text',
-    });
-  }
 }

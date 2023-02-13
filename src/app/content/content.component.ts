@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { map } from 'rxjs';
 
 import { ColumnService } from './services/column.service';
+import { Column } from './models/column';
 
 @Component({
   selector: 'app-content',
@@ -14,7 +15,7 @@ export class ContentComponent implements OnInit {
   addColumnInactive: boolean = true;
   addColumnActive: boolean = false;
   nameNewColumn: string = '';
-  idNewColumn: any;
+  idNewColumn: number | undefined;
   cards?: string[];
   columns?: Column[];
 
@@ -27,27 +28,22 @@ export class ContentComponent implements OnInit {
     column = new Column(this.idNewColumn, this.nameNewColumn, this.cards)
   ) {
     this.columnServise.createNewColumn(column).subscribe(() => {
-      this.ngOnInit();
+      this.getAllColumn();
     });
     this.nameNewColumn = '';
   }
 
-  ngOnInit() {
+  getAllColumn() {
     this.columnServise
       .getAllColumn()
       .pipe(
         map((columns) => {
           this.columns = columns;
-          console.log(this.columns);
         })
       )
       .subscribe(() => {});
   }
-}
-export class Column {
-  constructor(
-    public id: number,
-    public nameColumn: string,
-    public cards?: string[]
-  ) {}
+  ngOnInit() {
+    this.getAllColumn();
+  }
 }

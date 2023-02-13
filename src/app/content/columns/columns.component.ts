@@ -3,6 +3,8 @@ import { map } from 'rxjs';
 
 import { CardService } from '../services/card.service';
 import { ContentComponent } from '../content.component';
+import { Column } from '../models/column';
+import { Card } from '../models/card';
 
 @Component({
   selector: 'app-columns',
@@ -15,46 +17,41 @@ export class ColumnsComponent implements OnInit {
     private content: ContentComponent
   ) {}
 
-  @Input() column: any;
+  @Input() column!: Column;
 
   popupMenuColumn: boolean = false;
   addCardInactive: boolean = true;
-  idNewCard: any;
+  idNewCard: number | undefined;
   nameNewCard: string = '';
   cards?: Card[];
 
   createNewCard(
-    card = new Card(this.idNewCard, this.nameNewCard, this.column.id)
+    card = new Card(this.idNewCard, this.nameNewCard, this.column.id as number)
   ) {
-    console.log(card);
     this.cardService.createNewCard(card).subscribe(() => {
-      this.ngOnInit();
+      this.getAllCardsThisColumn();
     });
     this.nameNewCard = '';
   }
 
-  deleteColumn(id: string) {
+  deleteColumn(id: number) {
     this.cardService.deleteColumn(id).subscribe(() => {
-      this.content.ngOnInit();
+      this.content.getAllColumn();
     });
   }
 
-  ngOnInit() {
+  getAllCardsThisColumn() {
     this.cardService
-      .getAllCardsThisColumn(this.column.id)
+      .getAllCardsThisColumn(this.column.id as number)
       .pipe(
         map((cards) => {
           this.cards = cards;
-          console.log(this.cards);
         })
       )
       .subscribe(() => {});
   }
-}
-export class Card {
-  constructor(
-    public id: number,
-    public nameCard: string,
-    public columnId: number
-  ) {}
+
+  ngOnInit() {
+    this.getAllCardsThisColumn();
+  }
 }

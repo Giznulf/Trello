@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 
 import { HttpService } from 'src/app/shared/services/http.service';
-import { User } from '../login-page/login-page.component';
+import { User } from '../models/user';
 
 @Injectable({
   providedIn: `root`,
@@ -12,28 +12,22 @@ import { User } from '../login-page/login-page.component';
 export class UserAuthorizationService {
   constructor(
     private router: Router,
-    private httpService: HttpService,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    private httpService: HttpService
   ) {}
 
+  public errorLogin: boolean = false;
+
   postCurrentUser(user: User) {
-    return this.httpService
-      .postResponseTypeText(user, 'user/')
-      .pipe(
-        map((data) => {
-          console.log(data);
-          if (data == 'Авторизация прошла успешно') {
-            this.router.navigate(['/desktop']);
-          } else if (data == 'Неверный логин или пароль') {
-            if (false == false) {
-              return;
-            }
-          }
-        }),
-        catchError(async () =>
-          console.log(this.toastr.error('Ошибка на стороне сервера.'))
-        )
-      )
-      .subscribe((x) => {});
+    return this.httpService.post(user, 'user/').pipe(
+      map((data) => {
+        if (data.name == user.name) {
+          this.router.navigate(['/desktop']);
+        } else if (data.name == '') {
+          this.errorLogin = true;
+        }
+      }),
+      catchError(async () => this.toastr.error('Ошибка на стороне сервера.'))
+    );
   }
 }

@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { UserAuthorizationService } from '../servises/user-authorization.service';
+import { User } from '../models/user';
 
 @Component({
   selector: 'app-login-page',
@@ -14,11 +15,12 @@ export class LoginPageComponent {
 
   constructor(private userAuthorization: UserAuthorizationService) {}
 
-  checkig() {
-    this.userAuthorization.postCurrentUser(new User(this.name, this.password)).unsubscribe;
+  checking() {
+    this.userAuthorization
+      .postCurrentUser(new User(this.name, this.password))
+      .subscribe(() => {
+        this.errorLogin = this.userAuthorization.errorLogin;
+      }).unsubscribe;
   }
+}
 
-}
-export class User {
-  constructor(public name: string, public password: string) {}
-}

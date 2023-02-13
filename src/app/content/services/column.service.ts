@@ -3,7 +3,7 @@ import { catchError } from 'rxjs';
 import { ToastrService } from 'ngx-toastr';
 
 import { HttpService } from 'src/app/shared/services/http.service';
-import { Column } from '../content.component';
+import { Column } from '../models/column';
 
 @Injectable({
   providedIn: 'root',
@@ -26,9 +26,7 @@ export class ColumnService {
     return this.httpService
       .get('columns/')
       .pipe(
-        catchError(async () =>
-          console.log(this.toastr.error('Ошибка на стороне сервера.'))
-        )
+        catchError(async () => this.toastr.error('Ошибка на стороне сервера.'))
       );
   }
 }
