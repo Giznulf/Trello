@@ -1,41 +1,27 @@
-import { NgModule, Component } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import {Routes, RouterModule} from '@angular/router';
-import { FormsModule }   from '@angular/forms';
-import { HttpClientModule }   from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ToastrModule } from 'ngx-toastr';
 
 import { AppRoutingModule } from './app-routing.module';
-import { DesktopModule } from '../desktop/desktop.module';
-
+import { HomePageModule } from 'src/app/core/home-page/home-page.module';
 
 import { AppComponent } from './app.component';
-import { HomePageComponent } from '../home-page/home-page.component';
-import { DesktopComponent} from '../desktop/desktop.component';
-
-
-
-const appRoutes: Routes =[
-  { path: '', component: HomePageComponent},
-  { path: 'desktop', component: DesktopComponent},
-
-];
+import { LoginPageComponent } from 'src/app/core/login-page/login-page.component';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    HomePageComponent,
-
-   ],
+  declarations: [AppComponent, LoginPageComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    RouterModule.forRoot(appRoutes),
     HttpClientModule,
-    DesktopModule,
-
+    HomePageModule,
+    BrowserAnimationsModule,
+    ToastrModule.forRoot(),
   ],
-  providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

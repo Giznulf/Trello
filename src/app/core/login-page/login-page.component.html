@@ -1,0 +1,54 @@
+<div>
+  <img
+    class="trello-logo"
+    alt="Trello"
+    src="https://d2k1ftgv7pobq7.cloudfront.net/meta/c/p/res/images/trello-header-logos/167dc7b9900a5b241b15ba21f8037cf8/trello-logo-blue.svg"
+  />
+  <section>
+    <div class="section-wrapper">
+      <div *ngIf="errorLogin">
+        <div class="errorClass">
+          <i>Неправильно введен логин или пароль.</i>
+        </div>
+      </div>
+
+      <h1>Вход в Trello</h1>
+      <div class="login-password-entrance">
+        <form method="post">
+          <div class="login-password-container">
+            <div class="entrance">
+              <input
+                type="text"
+                name="name"
+                [(ngModel)]="name"
+                class="form-field"
+                list="admin"
+                autocorrect="off"
+                spellcheck="false"
+                autocapitalize="off"
+                autofocus="autofocus"
+                placeholder="Введите логин"
+                value=""
+                autocomplete="username"
+              />
+              <input
+                type="password"
+                name="password"
+                [(ngModel)]="password"
+                class="form-field"
+                placeholder="Введите пароль"
+                autocomplete="current-password"
+              />
+            </div>
+            <input
+              type="submit"
+              (click)="checking()"
+              class="account-button"
+              value="Войти"
+            />
+          </div>
+        </form>
+      </div>
+    </div>
+  </section>
+</div>
