@@ -1,3 +1,16 @@
+Для запуска необходимо в командной строке перейти к папке проекта с помощью команды 
+cd
+Импортировать файлы node_modules с помощью команды
+npm -i
+и запустить проект с помощью команды
+ng serve --o
+
+Для корректного отображения содержимого необходимо клонировать репозиторий находящийся по адресу https://github.com/Giznulf/TrelloBackend и запустить его в соответствии с файлом README.md
+
+Тимофей, для входа используй 
+логин tim 
+пароль tim
+
 # Trello
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.3.0.

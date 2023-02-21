@@ -2,22 +2,41 @@ import {Injectable} from '@angular/core';
 import { Observable, throwError } from 'rxjs';
 import { catchError, retry } from 'rxjs/operators';
 import {HttpClient} from '@angular/common/http';
-import {User} from '../src/home-page/home-page.component'
+import {User} from '../src/home-page/home-page.component';
+import {Column} from '../src/content/content.component';
+import { Card } from './content/columns/columns.component';
 
 @Injectable()
 export class HttpService{
 
-    constructor(private http: HttpClient
-                /*private user: Users*/){ }
+    constructor(private http: HttpClient){ }
 
-   /* users = 'assets/data/users.json';
-    //user = '';
+    private readonly _apiUrl = 'http://localhost:5258/api/';
 
-    getData(){
-        return this.http.get(this.users);
-    }*/
-    postData(usera: User){
-      const body = {name: usera.name, password: usera.password};
-      return this.http.post('http://localhost:5258/api/Users1', body);
+    getAllColumn(){
+      return this.http.get(`${this._apiUrl}columns/`);
+    }
+
+    postNewColumn(column : Column){
+      const body = {nameColumn: column.nameColumn, cards: column.cards};
+      return this.http.post(`${this._apiUrl}columns/`, body);
+    }
+
+    deleteColumn(id: string){
+      return this.http.delete(`${this._apiUrl}columns/${id}`);
+    }
+
+    getAllCardsThisColumn(columnId: string){
+      return this.http.get(`${this._apiUrl}cards/${columnId}`);
+    }
+
+    postNewCard(card: Card){
+      const body = {nameCard: card.nameCard, columnId: card.columnId};
+      return this.http.post(`${this._apiUrl}cards/`, body);
+    }
+
+    postCurrentUser(user: User){
+      const body = {name: user.name, password: user.password};
+      return this.http.post(`${this._apiUrl}user/`, body, {responseType: "text"});
     }
 }
